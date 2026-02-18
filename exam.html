@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NTA Quiz - Paper</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body { font-family: Arial, Helvetica, sans-serif; }
+      .bg-pattern {
+        background-image: linear-gradient(rgba(255,255,255,.92), rgba(255,255,255,.92)),
+          url('https://www.toptal.com/designers/subtlepatterns/uploads/intersection.png');
+      }
+      .q-pill { width: 46px; height: 42px; border: 1px solid #aab3bc; border-radius: 8px; display:flex; align-items:center; justify-content:center; font-size: 24px; }
+      .state-not-visited { background: #f4f4f4; }
+      .state-not-answered { background: #e65a00; color: #fff; clip-path: polygon(0 0, 100% 10%, 100% 90%, 0% 100%); border-radius: 6px; }
+      .state-answered { background: #1db100; color: #fff; clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 90%); border-radius: 6px; }
+      .state-review { background: #6a28b8; color:#fff; border-radius:999px; }
+      .state-answered-review { background: radial-gradient(circle at 28% 36%, #6a28b8 58%, #1db100 59%); color:#fff; border-radius:999px; }
+      .palette-btn { width: 52px; height: 44px; border:1px solid #9da6af; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:32px; }
+      .option-row { border-top: 1px solid #c7ccd1; border-bottom: 1px solid #c7ccd1; padding: 18px 8px; }
+    </style>
+  </head>
+  <body class="bg-gray-100 min-h-screen flex flex-col">
+    <header class="bg-[#005f9e] text-white h-8 text-sm flex items-center justify-end px-4">
+      <span class="bg-green-500 w-4 h-4 rounded-sm inline-block mr-2"></span> Home
+    </header>
+
+    <section class="bg-white border-b">
+      <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between gap-4">
+        <img src="https://www.nta.ac.in/Images/logo.png" alt="NTA Logo" class="h-16 object-contain" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_India.svg" alt="Government of India" class="h-14 object-contain" />
+        <img src="https://www.75azadi.gov.in/static/images/logo.svg" alt="Azadi ka Amrit Mahotsav" class="h-14 object-contain" />
+      </div>
+    </section>
+
+    <section class="bg-pattern border-b">
+      <div class="max-w-7xl mx-auto px-4 py-2 grid grid-cols-3 items-center gap-4">
+        <div class="col-span-2 flex gap-4 items-center">
+          <div class="w-36 h-28 border-2 border-gray-500 bg-gray-50 flex items-center justify-center text-7xl">👤</div>
+          <div class="text-[42px] leading-tight">
+            <div>Candidate Name : <span class="text-orange-500 font-bold">[Your Name]</span></div>
+            <div>Exam Name : <span class="text-orange-500 font-bold">NEET</span></div>
+            <div>Subject Name : <span class="text-orange-500 font-bold">PHYSICS</span></div>
+            <div>Remaining Time : <span id="timer" class="text-white bg-sky-500 px-3 rounded-full font-bold">03:00:00</span></div>
+          </div>
+        </div>
+        <div class="justify-self-end">
+          <select class="w-72 border border-gray-300 text-4xl px-4 py-3 bg-white">
+            <option>English</option>
+            <option>Hindi</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <main class="flex-1 max-w-7xl mx-auto w-full px-4 py-4 grid grid-cols-12 gap-4">
+      <section class="col-span-8 bg-white p-4">
+        <div class="flex justify-between items-center border-b pb-3">
+          <h2 id="questionTitle" class="text-5xl font-bold">Question 1:</h2>
+          <button class="text-blue-600 text-6xl">⬇</button>
+        </div>
+
+        <div class="py-4">
+          <p id="questionText" class="text-[26px] mb-8 leading-relaxed"></p>
+          <div id="options" class="grid grid-cols-2 gap-x-8 gap-y-3 text-[42px]"></div>
+        </div>
+
+        <div class="flex gap-2 mt-3 text-[30px] font-bold">
+          <button id="saveNext" class="bg-green-500 text-white px-6 py-3">SAVE & NEXT</button>
+          <button id="clear" class="bg-gray-100 border px-6 py-3">CLEAR</button>
+          <button id="saveMark" class="bg-amber-400 text-white px-6 py-3">SAVE & MARK FOR REVIEW</button>
+          <button id="markNext" class="bg-blue-600 text-white px-6 py-3">MARK FOR REVIEW & NEXT</button>
+        </div>
+
+        <div class="flex justify-between items-center bg-gray-100 p-3 mt-4 text-[36px] font-bold">
+          <div class="flex gap-3">
+            <button id="backBtn" class="px-5 py-2 bg-white border">&lt;&lt; BACK</button>
+            <button id="nextBtn" class="px-5 py-2 bg-white border">NEXT &gt;&gt;</button>
+          </div>
+          <button class="bg-green-500 text-white px-10 py-2">SUBMIT</button>
+        </div>
+      </section>
+
+      <aside class="col-span-4 bg-white p-4">
+        <div class="border-2 border-dotted border-gray-500 p-4">
+          <div class="grid grid-cols-2 gap-4 text-[22px]">
+            <div class="flex items-center gap-2"><span id="countNV" class="q-pill state-not-visited">0</span> Not Visited</div>
+            <div class="flex items-center gap-2"><span id="countNA" class="q-pill state-not-answered">0</span> Not Answered</div>
+            <div class="flex items-center gap-2"><span id="countA" class="q-pill state-answered">0</span> Answered</div>
+            <div class="flex items-center gap-2"><span id="countR" class="q-pill state-review">0</span> Marked for Review</div>
+            <div class="flex items-center gap-2 col-span-2"><span id="countAR" class="q-pill state-answered-review">0</span> Answered & Marked for Review</div>
+          </div>
+        </div>
+
+        <div id="palette" class="mt-4 grid grid-cols-7 gap-2"></div>
+      </aside>
+    </main>
+
+    <footer class="bg-[#003865] text-white text-center py-4 text-sm">© All Rights Reserved - National Testing Agency</footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

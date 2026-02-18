@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NTA Quiz - Instructions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body { font-family: Arial, Helvetica, sans-serif; }
+      .bg-pattern {
+        background-image: linear-gradient(rgba(255,255,255,.92), rgba(255,255,255,.92)),
+          url('https://www.toptal.com/designers/subtlepatterns/uploads/intersection.png');
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 min-h-screen flex flex-col">
+    <header class="bg-[#005f9e] text-white h-8 text-sm flex items-center justify-end px-4">
+      <span class="bg-green-500 w-4 h-4 rounded-sm inline-block mr-2"></span> Home
+    </header>
+
+    <section class="bg-white border-b">
+      <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between gap-4">
+        <img src="https://www.nta.ac.in/Images/logo.png" alt="NTA Logo" class="h-16 object-contain" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_India.svg" alt="Government of India" class="h-14 object-contain" />
+        <img src="https://www.75azadi.gov.in/static/images/logo.svg" alt="Azadi ka Amrit Mahotsav" class="h-14 object-contain" />
+      </div>
+    </section>
+
+    <main class="flex-1 bg-pattern">
+      <div class="max-w-6xl mx-auto px-4 py-6">
+        <div class="flex items-center justify-between mb-6">
+          <h1 class="text-3xl font-bold text-[#013d75] tracking-wide">GENERAL INSTRUCTIONS</h1>
+          <div>
+            <label class="block text-sm mb-1 text-gray-700">Choose Your Default Language</label>
+            <select class="w-56 border border-gray-300 px-3 py-2 bg-white">
+              <option>English</option>
+              <option>Hindi</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="bg-white border border-gray-200 p-8 leading-7 text-gray-700 text-[15px]">
+          <h2 class="text-4xl text-center font-bold text-gray-900 mb-8">Please read the instructions carefully</h2>
+
+          <h3 class="text-2xl font-bold underline mb-2">General Instructions:</h3>
+          <ol class="list-decimal pl-6 space-y-2">
+            <li>Total duration of exam is <b>180 minutes</b>.</li>
+            <li>The countdown timer in the top right corner displays remaining time. Exam ends automatically when time is over.</li>
+            <li>Question palette on the right shows status using symbols:</li>
+          </ol>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4 py-4 pl-6">
+            <div class="flex items-center gap-3"><span class="w-8 h-8 border rounded bg-gray-100"></span> You have not visited the question.</div>
+            <div class="flex items-center gap-3"><span class="w-8 h-8 rounded-r-full bg-orange-600"></span> You have not answered the question.</div>
+            <div class="flex items-center gap-3"><span class="w-8 h-8 rounded-r-full bg-green-600"></span> You have answered the question.</div>
+            <div class="flex items-center gap-3"><span class="w-8 h-8 rounded-full bg-purple-700"></span> Marked for review.</div>
+            <div class="flex items-center gap-3 md:col-span-2"><span class="w-8 h-8 rounded-full bg-purple-700 relative after:content-['✔'] after:absolute after:text-[10px] after:bottom-0 after:right-0 after:bg-green-500 after:w-4 after:h-4 after:rounded-full after:flex after:items-center after:justify-center after:text-white"></span> Answered & Marked for Review (considered for evaluation).</div>
+          </div>
+
+          <h3 class="text-2xl font-bold underline mt-6 mb-2">Navigating to a Question:</h3>
+          <ol class="list-decimal pl-6 space-y-2" start="4">
+            <li>Click question number in palette to open that question directly.</li>
+            <li>Use <b>Save & Next</b> to save answer and move forward.</li>
+            <li>Use <b>Mark for Review & Next</b> to review later and continue.</li>
+          </ol>
+
+          <h3 class="text-2xl font-bold underline mt-6 mb-2">Answering a Question:</h3>
+          <ol class="list-decimal pl-6 space-y-2" start="7">
+            <li>Select your answer by clicking one option.</li>
+            <li>Use <b>Clear Response</b> to remove selected answer.</li>
+            <li>To update an answer, select another option and save again.</li>
+          </ol>
+
+          <p class="text-red-600 mt-6 border-t pt-4">Please note all questions will appear in your default language. You can change language later for a specific question.</p>
+
+          <label class="mt-6 flex gap-3 items-start">
+            <input id="accept" type="checkbox" class="mt-1" />
+            <span>I have read and understood the instructions and agree to follow examination rules.</span>
+          </label>
+
+          <div class="mt-8 text-center">
+            <a id="proceedBtn" href="exam.html" class="inline-block bg-green-500 text-white px-20 py-3 font-bold tracking-wide opacity-50 pointer-events-none">PROCEED</a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bg-[#003865] text-white text-center py-4 text-sm">© All Rights Reserved - National Testing Agency</footer>
+
+    <script>
+      const accept = document.getElementById('accept');
+      const proceedBtn = document.getElementById('proceedBtn');
+      accept.addEventListener('change', () => {
+        proceedBtn.classList.toggle('opacity-50', !accept.checked);
+        proceedBtn.classList.toggle('pointer-events-none', !accept.checked);
+      });
+    </script>
+  </body>
+</html>
